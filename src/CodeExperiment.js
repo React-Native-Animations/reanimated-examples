@@ -9,11 +9,13 @@ const { cond, eq, add, call, set, Value, event } = Animated;
 export default class CodeExperiment extends React.Component {
   constructor(props) {
     super(props);
+    // You can pass these variables to the styles
     this.dragX = new Value(0);
     this.dragY = new Value(0);
     this.offsetX = new Value(width / 2);
     this.offsetY = new Value(100);
     this.gestureState = new Value(-1);
+    // onGestureEvent is just mapping information
     this.onGestureEvent = event([
       {
         nativeEvent: {
@@ -27,11 +29,11 @@ export default class CodeExperiment extends React.Component {
     this.addY = add(this.offsetY, this.dragY);
     this.addX = add(this.offsetX, this.dragX);
 
-    this.transX = cond(
-      eq(this.gestureState, State.ACTIVE),
-      this.addX,
-      set(this.offsetX, this.addX)
-    );
+    // this.transX = cond(
+    //   eq(this.gestureState, State.ACTIVE),
+    //   this.addX,
+    //   set(this.offsetX, this.addX)
+    // );
 
     this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
       set(this.offsetY, this.addY)
@@ -39,7 +41,7 @@ export default class CodeExperiment extends React.Component {
   }
 
   onDrop = ([x, y]) => {
-    alert(`You dropped at x: ${x} and y: ${y}!`);
+    // alert(`You dropped at x: ${x} and y: ${y}!`);
   };
 
   render() {
@@ -57,8 +59,8 @@ export default class CodeExperiment extends React.Component {
         <PanGestureHandler
           maxPointers={1} // ?
           minDist={10}
-          // onGestureEvent={this.onGestureEvent}
-          onGestureEvent={e => console.log(e)}
+          onGestureEvent={this.onGestureEvent}
+          // onGestureEvent={e => console.log(e)}
           onHandlerStateChange={this.onGestureEvent}
         >
           <Animated.View
@@ -66,9 +68,9 @@ export default class CodeExperiment extends React.Component {
               // styles.circle,
               {
                 transform: [
-                  {
-                    translateX: this.transX
-                  },
+                  // {
+                  //   translateX: this.transX
+                  // },
                   {
                     translateY: this.transY
                   }
