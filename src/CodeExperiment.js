@@ -41,27 +41,45 @@ export default class CodeExperiment extends React.Component {
     // this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
     //   set(this.offsetY, this.addY)
     // ]);
+    this.state = {dragging: false}
   }
 
-  onDrop = ([x, y]) => {
-    // alert(`You dropped at x: ${x} and y: ${y}!`);
+  showCircle = ([]) => {
+    this.setState({dragging: true})
   };
-
+  hideCircle = ([]) => {
+    this.setState({dragging: false})
+  };
+  
   render() {
     return (
       <View style={styles.container}>
-        {/* <Animated.View>
+        {/* Do stuff under conditions, like
+         call a function, when the state in ACTIVE or END etc 
+         */}
+        <Animated.Code>
+          {() =>
+            cond(
+              eq(this.gestureState, State.BEGAN),
+              // In the array you can pass values
+              call([], this.showCircle)
+            )
+          }
+        </Animated.Code>
+        <Animated.Code>
           {() =>
             cond(
               eq(this.gestureState, State.END),
-              call([this.addX, this.addY], this.onDrop)
+              // In the array you can pass values
+              call([], this.hideCircle)
             )
           }
-        </Animated.View> */}
+        </Animated.Code>
         {/* Note that you can not drag this circle, because
         // it's not in a PanGestureHandler.
-        But, when you drag the text below, it will be dragged along. */}
-        <Animated.View style={[styles.circle, {top: this.circleY}]} />
+        But, when you drag the text below, it will be dragged along. 
+        Show circle when we drag the text*/}
+       {this.state.dragging && <Animated.View style={[styles.circle, {top: this.circleY}]} />}
         {/* PanGestureHandler gives you events */}
         <PanGestureHandler
           maxPointers={1} // ?
