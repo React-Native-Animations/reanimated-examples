@@ -3,11 +3,12 @@ import { StyleSheet, Text, View } from "react-native";
 
 import CodeInitial from "./src/CodeInitial";
 import CodeExperiment from "./src/CodeExperiment";
+
 export default function App() {
   return (
     <View style={styles.container}>
       <CodeExperiment />
-      <CodeInitial />
+      {/* <CodeInitial /> */}
     </View>
   );
 }

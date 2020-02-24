@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 const { width } = Dimensions.get('window');
@@ -60,7 +60,7 @@ export default class CodeExperiment extends React.Component {
           onHandlerStateChange={this.onGestureEvent}>
           <Animated.View
             style={[
-              styles.circle,
+              // styles.circle,
               {
                 transform: [
                   {
@@ -72,7 +72,11 @@ export default class CodeExperiment extends React.Component {
                 ],
               },
             ]}
-          />
+          >
+            {/* You create an Animated.View inside a PanGestureHandler,
+            and then you can put anything you like in there */}
+            <Text>anything</Text>
+          </Animated.View>
         </PanGestureHandler>
       </View>
     );
