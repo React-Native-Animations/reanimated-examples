@@ -29,7 +29,8 @@ export default class CodeExperiment extends React.Component {
     ]);
 
     // this.addY = add(this.offsetY, this.dragY);
-    // this.addX = add(this.offsetX, this.dragX);
+    // Create a new value by adding
+    this.circleY = add(this.absoluteY, new Value(200));
 
     // this.transX = cond(
     //   eq(this.gestureState, State.ACTIVE),
@@ -60,7 +61,7 @@ export default class CodeExperiment extends React.Component {
         {/* Note that you can not drag this circle, because
         // it's not in a PanGestureHandler.
         But, when you drag the text below, it will be dragged along. */}
-        <Animated.View style={[styles.circle, {top: this.absoluteY}]} />
+        <Animated.View style={[styles.circle, {top: this.circleY}]} />
         {/* PanGestureHandler gives you events */}
         <PanGestureHandler
           maxPointers={1} // ?
