@@ -1,8 +1,8 @@
-import React from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
-import Animated from 'react-native-reanimated';
-import { PanGestureHandler, State } from 'react-native-gesture-handler';
-const { width } = Dimensions.get('window');
+import React from "react";
+import { StyleSheet, View, Text, Dimensions } from "react-native";
+import Animated from "react-native-reanimated";
+import { PanGestureHandler, State } from "react-native-gesture-handler";
+const { width } = Dimensions.get("window");
 
 const { cond, eq, add, call, set, Value, event } = Animated;
 
@@ -19,9 +19,9 @@ export default class CodeExperiment extends React.Component {
         nativeEvent: {
           translationX: this.dragX,
           translationY: this.dragY,
-          state: this.gestureState,
-        },
-      },
+          state: this.gestureState
+        }
+      }
     ]);
 
     this.addY = add(this.offsetY, this.dragY);
@@ -34,7 +34,7 @@ export default class CodeExperiment extends React.Component {
     );
 
     this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
-      set(this.offsetY, this.addY),
+      set(this.offsetY, this.addY)
     ]);
   }
 
@@ -53,24 +53,27 @@ export default class CodeExperiment extends React.Component {
             )
           }
         </Animated.View>
+        {/* PanGestureHandler gives you events */}
         <PanGestureHandler
-          maxPointers={1}
+          maxPointers={1} // ?
           minDist={10}
-          onGestureEvent={this.onGestureEvent}
-          onHandlerStateChange={this.onGestureEvent}>
+          // onGestureEvent={this.onGestureEvent}
+          onGestureEvent={e => console.log(e)}
+          onHandlerStateChange={this.onGestureEvent}
+        >
           <Animated.View
             style={[
               // styles.circle,
               {
                 transform: [
                   {
-                    translateX: this.transX,
+                    translateX: this.transX
                   },
                   {
-                    translateY: this.transY,
-                  },
-                ],
-              },
+                    translateY: this.transY
+                  }
+                ]
+              }
             ]}
           >
             {/* You create an Animated.View inside a PanGestureHandler,
@@ -87,16 +90,16 @@ const CIRCLE_SIZE = 70;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   circle: {
-    backgroundColor: 'tomato',
-    position: 'absolute',
+    backgroundColor: "tomato",
+    position: "absolute",
     marginLeft: -(CIRCLE_SIZE / 2),
     marginTop: -(CIRCLE_SIZE / 2),
     width: CIRCLE_SIZE,
     height: CIRCLE_SIZE,
     borderRadius: CIRCLE_SIZE / 2,
-    borderColor: '#000',
-  },
+    borderColor: "#000"
+  }
 });
