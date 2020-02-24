@@ -49,6 +49,9 @@ Events from `onGestureEvent={this.onGestureEvent}`
 -  "eventPhase": undefined,
 -`
 
+[Event handling with reanimated nodes](https://github.com/software-mansion/react-native-reanimated/blob/master/docs/pages/10.event.md)
+
+
 --------------------
 * Packages installed:
 - expo install react-native-reanimated react-native-gesture-handler

@@ -12,6 +12,7 @@ export default class CodeExperiment extends React.Component {
     // You can pass these variables to the styles
     this.dragX = new Value(0);
     this.dragY = new Value(0);
+    this.absoluteY = new Value(200);
     this.offsetX = new Value(width / 2);
     this.offsetY = new Value(100);
     this.gestureState = new Value(-1);
@@ -19,15 +20,16 @@ export default class CodeExperiment extends React.Component {
     this.onGestureEvent = event([
       {
         nativeEvent: {
-          translationX: this.dragX,
-          translationY: this.dragY,
-          state: this.gestureState
+          // translationX: this.dragX,
+          // translationY: this.dragY,
+          state: this.gestureState,
+          absoluteY: this.absoluteY
         }
       }
     ]);
 
-    this.addY = add(this.offsetY, this.dragY);
-    this.addX = add(this.offsetX, this.dragX);
+    // this.addY = add(this.offsetY, this.dragY);
+    // this.addX = add(this.offsetX, this.dragX);
 
     // this.transX = cond(
     //   eq(this.gestureState, State.ACTIVE),
@@ -35,9 +37,9 @@ export default class CodeExperiment extends React.Component {
     //   set(this.offsetX, this.addX)
     // );
 
-    this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
-      set(this.offsetY, this.addY)
-    ]);
+    // this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
+    //   set(this.offsetY, this.addY)
+    // ]);
   }
 
   onDrop = ([x, y]) => {
@@ -47,14 +49,14 @@ export default class CodeExperiment extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Animated.View>
+        {/* <Animated.View>
           {() =>
             cond(
               eq(this.gestureState, State.END),
               call([this.addX, this.addY], this.onDrop)
             )
           }
-        </Animated.View>
+        </Animated.View> */}
         {/* PanGestureHandler gives you events */}
         <PanGestureHandler
           maxPointers={1} // ?
@@ -66,16 +68,7 @@ export default class CodeExperiment extends React.Component {
           <Animated.View
             style={[
               // styles.circle,
-              {
-                transform: [
-                  // {
-                  //   translateX: this.transX
-                  // },
-                  {
-                    translateY: this.transY
-                  }
-                ]
-              }
+              {top: this.absoluteY}
             ]}
           >
             {/* You create an Animated.View inside a PanGestureHandler,
