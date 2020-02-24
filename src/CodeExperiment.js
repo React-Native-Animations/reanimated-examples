@@ -12,7 +12,7 @@ export default class CodeExperiment extends React.Component {
     // You can pass these variables to the styles
     this.dragX = new Value(0);
     this.dragY = new Value(0);
-    this.absoluteY = new Value(200);
+    this.absoluteY = new Value(200); // Use this value in multiple places
     this.offsetX = new Value(width / 2);
     this.offsetY = new Value(100);
     this.gestureState = new Value(-1);
@@ -57,6 +57,10 @@ export default class CodeExperiment extends React.Component {
             )
           }
         </Animated.View> */}
+        {/* Note that you can not drag this circle, because
+        // it's not in a PanGestureHandler.
+        But, when you drag the text below, it will be dragged along. */}
+        <Animated.View style={[styles.circle, {top: this.absoluteY}]} />
         {/* PanGestureHandler gives you events */}
         <PanGestureHandler
           maxPointers={1} // ?
