@@ -5,7 +5,7 @@
 Events from `onGestureEvent={this.onGestureEvent}`
 
 
-"isDefaultPrevented": [Function functionThatReturnsFalse],
+`"isDefaultPrevented": [Function functionThatReturnsFalse],
   "isPropagationStopped": [Function functionThatReturnsFalse],
   "isTrusted": undefined,
   "nativeEvent": Object {
@@ -46,7 +46,7 @@ SyntheticEvent {
     "registrationName": "onGestureHandlerEvent",
   },
   "eventPhase": undefined,
-
+`
 
 * Packages installed:
 - expo install react-native-reanimated react-native-gesture-handler
