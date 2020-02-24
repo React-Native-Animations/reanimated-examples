@@ -4,7 +4,7 @@ import Animated from "react-native-reanimated";
 import { PanGestureHandler, State } from "react-native-gesture-handler";
 const { width } = Dimensions.get("window");
 
-const { cond, eq, add, call, set, Value, event } = Animated;
+const { cond, eq, add, call, set, Value, event, or } = Animated;
 
 export default class CodeExperiment extends React.Component {
   constructor(props) {
@@ -41,16 +41,19 @@ export default class CodeExperiment extends React.Component {
     // this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
     //   set(this.offsetY, this.addY)
     // ]);
-    this.state = {dragging: false}
+    this.state = { dragging: false, y: 0 };
   }
 
   showCircle = ([]) => {
-    this.setState({dragging: true})
+    this.setState({ dragging: true });
   };
   hideCircle = ([]) => {
-    this.setState({dragging: false})
+    this.setState({ dragging: false });
   };
-  
+  getAbsoluteY_Value = ([y]) => {
+    this.setState({ y });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -69,9 +72,22 @@ export default class CodeExperiment extends React.Component {
         <Animated.Code>
           {() =>
             cond(
-              eq(this.gestureState, State.END),
+              or(
+                eq(this.gestureState, State.END),
+                eq(this.gestureState, State.FAILED),
+                eq(this.gestureState, State.CANCELLED)
+              ),
               // In the array you can pass values
               call([], this.hideCircle)
+            )
+          }
+        </Animated.Code>
+        <Animated.Code>
+          {() =>
+            cond(
+              eq(this.gestureState, State.ACTIVE),
+              // In the array you can pass values
+              call([this.absoluteY], this.getAbsoluteY_Value)
             )
           }
         </Animated.Code>
@@ -79,7 +95,9 @@ export default class CodeExperiment extends React.Component {
         // it's not in a PanGestureHandler.
         But, when you drag the text below, it will be dragged along. 
         Show circle when we drag the text*/}
-       {this.state.dragging && <Animated.View style={[styles.circle, {top: this.circleY}]} />}
+        {this.state.dragging && (
+          <Animated.View style={[styles.circle, { top: this.circleY }]} />
+        )}
         {/* PanGestureHandler gives you events */}
         <PanGestureHandler
           maxPointers={1} // ?
@@ -88,15 +106,16 @@ export default class CodeExperiment extends React.Component {
           // onGestureEvent={e => console.log(e)}
           onHandlerStateChange={this.onGestureEvent}
         >
+           {/* You create an Animated.View inside a PanGestureHandler,
+            and then you can put anything you like in there */}
           <Animated.View
             style={[
               // styles.circle,
-              {top: this.absoluteY}
+              { top: this.absoluteY }
             ]}
           >
-            {/* You create an Animated.View inside a PanGestureHandler,
-            and then you can put anything you like in there */}
-            <Text>anything</Text>
+            {/* <Text>anything</Text> */}
+        <Text>Y: {this.state.y}</Text>
           </Animated.View>
         </PanGestureHandler>
       </View>
