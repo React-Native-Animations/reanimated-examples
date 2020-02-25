@@ -13,34 +13,20 @@ export default class CodeExperiment extends React.Component {
     this.dragX = new Value(0);
     this.dragY = new Value(0);
     this.absoluteY = new Value(200); // Use this value in multiple places
-    this.offsetX = new Value(width / 2);
-    this.offsetY = new Value(100);
     this.gestureState = new Value(-1);
     // onGestureEvent is just mapping information
     this.onGestureEvent = event([
       {
         nativeEvent: {
-          // translationX: this.dragX,
-          // translationY: this.dragY,
           state: this.gestureState,
           absoluteY: this.absoluteY
         }
       }
     ]);
 
-    // this.addY = add(this.offsetY, this.dragY);
     // Create a new value by adding
     this.circleY = add(this.absoluteY, new Value(200));
 
-    // this.transX = cond(
-    //   eq(this.gestureState, State.ACTIVE),
-    //   this.addX,
-    //   set(this.offsetX, this.addX)
-    // );
-
-    // this.transY = cond(eq(this.gestureState, State.ACTIVE), this.addY, [
-    //   set(this.offsetY, this.addY)
-    // ]);
     this.state = { dragging: false, y: 0 };
   }
 
@@ -94,7 +80,7 @@ export default class CodeExperiment extends React.Component {
         {/* Note that you can not drag this circle, because
         // it's not in a PanGestureHandler.
         But, when you drag the text below, it will be dragged along. 
-        Show circle when we drag the text*/}
+        ...Show circle when we drag the text*/}
         {this.state.dragging && (
           <Animated.View style={[styles.circle, { top: this.circleY }]} />
         )}
