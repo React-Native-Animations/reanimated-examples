@@ -55,7 +55,50 @@
 [Event handling with reanimated nodes](https://github.com/software-mansion/react-native-reanimated/blob/master/docs/pages/10.event.md)
 
 
-2. PanRotateAndZoom
+2. [PanRotateAndZoom](https://github.com/software-mansion/react-native-reanimated/blob/master/Example/PanRotateAndZoom/index.js)
+
+- `Blocks`
+
+    Blocks are just arrays of nodes that are being evaluated in a particular order and **return the value of the last node**. It can be created using block command but also when passed as an argument to other nodes the block command can be omitted and we can just pass a nodes array directly. See an example below:
+
+`block(
+  set(tmp, a), 
+  set(a, b), 
+  set(b, tmp)
+);`
+
+- Passing array directly is equivalent to wrapping it with the block command.
+
+- `set`
+- `set(valueToBeUpdated, sourceNode);`
+   
+    When evaluated, it will assign the value of `sourceNode` to the Animated.Value passed as a first argument. In other words, it performs an assignment operation from the `sourceNode` to `valueToBeUpdated` value node and also returns a node that represents this value.
+
+- `add`
+- `add(nodeOrNumber1, nodeOrNumber2, ...)`
+   
+    Takes two or more animated nodes or values, and when evaluated, returns their sum.
+
+- `cond`
+- `cond(conditionNode, ifNode, [elseNode]);`
+    
+    If `conditionNode` evaluates to "truthy" value the node evaluates `ifNode` node and returns its value, otherwise it evaluates `elseNode` and returns its value. **elseNode is optional**.
+
+- `eq`
+- `eq(nodeOrValueA, nodeOrValueB);`
+    
+    Returns 1 if the value of both nodes are equal. Otherwise returns 0.
+
+- [Refs and the DOM](https://reactjs.org/docs/refs-and-the-dom.html)
+- [Simultaneous recognition](https://github.com/software-mansion/react-native-gesture-handler/blob/master/docs/interactions.md)
+
+- `simultaneousHandlers`
+
+Accepts a react ref object or an array of refs to other handler components (refs should be created using [`React.createRef()`](https://reactjs.org/docs/refs-and-the-dom.html)). When set the handler will be allowed to [activate](state.md#active) even if one or more of the handlers provided by their refs are [active](state.md#active). It will also prevent the provided handlers from [cancelling](state.md#cancelled) current handler when they [activate](state.md#active). Read more in the [cross handler interaction](interactions.md#simultaneous-recognition) section.
+
+- [PinchGestureHandler](https://github.com/software-mansion/react-native-gesture-handler/blob/master/docs/handler-pinch.md)
+- Check the rest of simultanious Handlers in the `Simultaneous recognition` link above.
+
 
 
 --------------------
