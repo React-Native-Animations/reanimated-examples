@@ -78,17 +78,20 @@ Passing array directly is equivalent to wrapping it with the block command.
     When evaluated, it will assign the value of `sourceNode` to the Animated.Value passed as a first argument. In other words, it performs an assignment operation from the `sourceNode` to `valueToBeUpdated` value node and also returns a node that represents this value.
 
 - `add`
+
 `add(nodeOrNumber1, nodeOrNumber2, ...)`
    
     Takes two or more animated nodes or values, and when evaluated, returns their sum.
 
 - `cond`
-- `cond(conditionNode, ifNode, [elseNode]);`
+
+`cond(conditionNode, ifNode, [elseNode]);`
     
     If `conditionNode` evaluates to "truthy" value the node evaluates `ifNode` node and returns its value, otherwise it evaluates `elseNode` and returns its value. **elseNode is optional**.
 
 - `eq`
-- `eq(nodeOrValueA, nodeOrValueB);`
+
+`eq(nodeOrValueA, nodeOrValueB);`
     
     Returns 1 if the value of both nodes are equal. Otherwise returns 0.
 
@@ -97,7 +100,7 @@ Passing array directly is equivalent to wrapping it with the block command.
 
 - `simultaneousHandlers`
 
-Accepts a react ref object or an array of refs to other handler components (refs should be created using [`React.createRef()`](https://reactjs.org/docs/refs-and-the-dom.html)). When set the handler will be allowed to [activate](state.md#active) even if one or more of the handlers provided by their refs are [active](state.md#active). It will also prevent the provided handlers from [cancelling](state.md#cancelled) current handler when they [activate](state.md#active). Read more in the [cross handler interaction](interactions.md#simultaneous-recognition) section.
+    Accepts a react ref object or an array of refs to other handler components (refs should be created using [`React.createRef()`](https://reactjs.org/docs/refs-and-the-dom.html)). When set the handler will be allowed to [activate](state.md#active) even if one or more of the handlers provided by their refs are [active](state.md#active). It will also prevent the provided handlers from [cancelling](state.md#cancelled) current handler when they [activate](state.md#active). Read more in the [cross handler interaction](interactions.md#simultaneous-recognition) section.
 
 - [PinchGestureHandler](https://github.com/software-mansion/react-native-gesture-handler/blob/master/docs/handler-pinch.md)
 - Check the rest of simultanious Handlers in the `Simultaneous recognition` link above.
