@@ -54,6 +54,8 @@
 
 [Event handling with reanimated nodes](https://github.com/software-mansion/react-native-reanimated/blob/master/docs/pages/10.event.md)
 
+    `react-native-reanimated`'s new syntax is possible to be used with Animated.event. Instead of providing only a mapping from event fields to animated nodes, it is allowed to write a function that takes reanimated values map as an input and return a block (or any other reanimated function) that will be then used to handle the event.
+
 
 2. [PanRotateAndZoom](https://github.com/software-mansion/react-native-reanimated/blob/master/Example/PanRotateAndZoom/index.js)
 
@@ -67,15 +69,16 @@
   set(b, tmp)
 );`
 
-- Passing array directly is equivalent to wrapping it with the block command.
+Passing array directly is equivalent to wrapping it with the block command.
 
 - `set`
-- `set(valueToBeUpdated, sourceNode);`
+    
+`set(valueToBeUpdated, sourceNode);`
    
     When evaluated, it will assign the value of `sourceNode` to the Animated.Value passed as a first argument. In other words, it performs an assignment operation from the `sourceNode` to `valueToBeUpdated` value node and also returns a node that represents this value.
 
 - `add`
-- `add(nodeOrNumber1, nodeOrNumber2, ...)`
+`add(nodeOrNumber1, nodeOrNumber2, ...)`
    
     Takes two or more animated nodes or values, and when evaluated, returns their sum.
 
