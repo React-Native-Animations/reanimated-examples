@@ -4,7 +4,10 @@
 [Introduction to Reanimated in React Native
 ](https://www.youtube.com/watch?v=KnQ6xcVgJec&t=7s)
 
+* Example: [Code](https://github.com/software-mansion/react-native-reanimated/blob/master/Example/code/index.js)
+
 * Events from `onGestureEvent={this.onGestureEvent}`
+
 `
 -"isDefaultPrevented": [Function functionThatReturnsFalse],
 -  "isPropagationStopped": [Function functionThatReturnsFalse],
@@ -50,6 +53,9 @@
 -`
 
 [Event handling with reanimated nodes](https://github.com/software-mansion/react-native-reanimated/blob/master/docs/pages/10.event.md)
+
+
+2. PanRotateAndZoom
 
 
 --------------------
